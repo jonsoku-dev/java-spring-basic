@@ -1,7 +1,11 @@
 package hello.core;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
@@ -20,20 +24,29 @@ import hello.core.order.OrderServiceImpl;
  * 이제 각 배우들은 담당 기능을 실행하는 책임만 지면 된다.
  * OrderServiceImpl 은 기능을 실행하는 책임만 지면 된다.
  */
+
+// 앱의 구성정보를 담아두는 곳
+@Configuration
 public class AppConfig {
+    // @Bean을 등록하면, 스프링 컨테이너에 등록이 된다.
+    @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
 
+    @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
-    private MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
 
-    private DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+    @Bean
+    public DiscountPolicy discountPolicy() {
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 }
