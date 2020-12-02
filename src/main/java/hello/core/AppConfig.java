@@ -26,7 +26,7 @@ import hello.core.order.OrderServiceImpl;
  */
 
 // 앱의 구성정보를 담아두는 곳
-@Configuration
+@Configuration // 지워도 실행은되는데 싱글톤은 보장되지않는다.
 public class AppConfig {
 
     // 가정 1
@@ -38,7 +38,7 @@ public class AppConfig {
 
     // 실제 - 스프링이 싱글톤을 보장해준다.
     // call AppConfig.memberService
-    // call AppConfig.memberRepository
+    // call AppConfig.memberRepository <--
     // call AppConfig.orderService
 
     // @Bean을 등록하면, 스프링 컨테이너에 등록이 된다.
