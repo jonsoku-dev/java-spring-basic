@@ -28,19 +28,35 @@ import hello.core.order.OrderServiceImpl;
 // 앱의 구성정보를 담아두는 곳
 @Configuration
 public class AppConfig {
+
+    // 가정 1
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+    // call AppConfig.memberRepository
+
+    // 실제 - 스프링이 싱글톤을 보장해준다.
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+
     // @Bean을 등록하면, 스프링 컨테이너에 등록이 된다.
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
