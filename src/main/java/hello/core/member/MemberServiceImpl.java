@@ -1,7 +1,11 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import hello.core.AppConfig;
 
+@Component
 public class MemberServiceImpl implements MemberService {
 
     /**
@@ -14,6 +18,8 @@ public class MemberServiceImpl implements MemberService {
      */
     private final MemberRepository memberRepository;
 
+    // 생성자에 걸어둔다.
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
