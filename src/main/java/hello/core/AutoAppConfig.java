@@ -13,6 +13,10 @@ import org.springframework.context.annotation.FilterType;
          * excludeFilters 를 이용해서 설정정보는 컴포넌트 스캔 대상에서 제외했다. 보통 설정 정보를 컴포넌트
          * 스캔 대상에서 제외하지는 않지만, 기존 예제 코드를 최대한 남기고 유지하기 위해서 이 방법을 선택했다.
         */
+//        basePackages = "hello.core", // 기본위치 지정
+//        basePackageClasses = AutoAppConfig.class, // 이 클래스가 있는 패키지가 기본
+        // 두개다 지정하지않으면 AutoAppConfig의 위치가 기본으로 !
+        // 그래서 설정 정보 클래스의 위치를 프로젝트 최상단에 두는것이 기본
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )
 public class AutoAppConfig {
