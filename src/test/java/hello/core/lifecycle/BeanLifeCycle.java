@@ -32,8 +32,11 @@ public class BeanLifeCycle {
          * 를 추론해서 호출해준다.
          * 따라서 직접 스프링 빈으로 등록하면 종료 메서드는 따로 적어주지 않아도 잘 동작한다.
          * 추론 기능을 사용하기 싫으면 destroyMethod="" 처럼 빈 공백을 지정하면 된다
+         *
+         *  객체 메소드에 @PostConstruct, @PreDestory 애노테이션을 사용하면 따로 하지않아도된다.
+
          */
-        @Bean(initMethod = "init", destroyMethod = "close")
+//        @Bean(initMethod = "init", destroyMethod = "close")
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();  // 여기에서는 url이 아직 없다.
             networkClient.setUrl("http://hello-spring.dev"); // 의존성주입이 완료되고 setter가 작동한다.
